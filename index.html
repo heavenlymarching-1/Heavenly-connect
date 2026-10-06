@@ -5,11 +5,11 @@ import {initializeApp} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-
 import {getFirestore, collection, addDoc, getDocs} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import {getStorage, ref, uploadBytes, getDownloadURL} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 const firebaseConfig = {
-  apiKey: "PASTE_API_KEY_HERE",
-  authDomain: "PASTE_HERE.firebaseapp.com",
-  projectId: "PASTE_PROJECT_ID",
-  storageBucket: "PASTE_HERE.appspot.com",
-  appId: "PASTE_APP_ID"
+  apiKey: "AIzaSyCw3icfLZlToutBMuMH631CxX-HX_1eWFs",
+  authDomain: "heavenly-connect.firebaseapp.com",
+  projectId: "heavenly-connect",
+  storageBucket: "heavenly-connect.firebasestorage.app",
+  appId: "1:983105945990:web:362eb8e31396d5456aac07"
 };
 const app=initializeApp(firebaseConfig);
 window.db=getFirestore(app); window.storage=getStorage(app);
