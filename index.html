@@ -1,48 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script>
-if(localStorage.getItem('heavenly_paid')!=='yes'){
- window.location.href='paywall.html';
-}
-  </script>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Heavenly Connect</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heavenly Connect - It starts with a swipe</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#000;color:#fff}
-.top{background:#020b2b;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99}
-.left{display:flex;align-items:center;gap:10px}
-.top img{width:48px;height:48px;border-radius:12px;border:2px solid #FFD700;object-fit:cover}
-.top b{color:#FFD700;font-size:14px;line-height:1.1;text-transform:uppercase}
-.top b span{color:#fff;font-size:10px;display:block;font-weight:400;text-transform:none;margin-top:3px;letter-spacing:1px}
-.top a{background:#FFD700;color:#000;padding:10px 20px;border-radius:25px;text-decoration:none;font-weight:900;font-size:13px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
-.card{background:#111;border-radius:16px;overflow:hidden}
-.pic{height:210px;position:relative;background:#222}
-.pic img{width:100%;height:100%;object-fit:cover}
-.badge{position:absolute;top:8px;left:8px;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:800;background:#00d26a;color:#fff}
-.info{padding:10px}.info b{font-size:14px}.info p{font-size:12px;color:#aaa;margin:4px 0 8px}
-.chat{width:100%;padding:11px;border:0;border-radius:12px;background:#ff0055;color:#fff;font-weight:800}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body{background:#fff}
+header{display:flex;justify-content:space-between;align-items:center;padding:15px 20px;background:#fff;position:sticky;top:0;z-index:20}
+.logo{color:#ff2d55;font-weight:900;font-size:28px;letter-spacing:-1.5px}
+.menu-btn{width:42px;height:42px;border-radius:50%;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:20px;border:none;cursor:pointer}
+#drawer{position:fixed;top:0;left:0;width:100%;height:100%;background:#f2f2f2;z-index:100;display:none;flex-direction:column;padding:15px}
+.drawer-top{display:flex;justify-content:space-between;align-items:center}
+.drawer-links{text-align:right;margin-top:40px}
+.drawer-links div{font-size:36px;font-weight:800;margin:14px 0;line-height:1;cursor:pointer}
+.login-btn{background:#000;color:#fff;padding:10px 25px;border-radius:25px;border:none;font-size:16px;font-weight:bold;cursor:pointer}
+.hero{background:#fff;height:62vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px}
+.hero h1{color:#ff2d55;font-size:62px;line-height:0.85;font-weight:900;letter-spacing:-2px}
+.cta{margin-top:32px;background:#ff2d55;color:#fff;padding:16px 40px;border-radius:30px;font-size:19px;font-weight:bold;border:none;width:82%;max-width:340px;cursor:pointer}
+.bottom{background:#111;color:#fff;padding:22px 18px;font-size:12px;line-height:1.4}
+.btn-cook{border:1px solid #555;border-radius:25px;padding:13px;margin:9px 0;text-align:center;cursor:pointer}
 </style>
 </head>
 <body>
-<div class="top">
-<div class="left">
-<img src="IMG-20261006-WA0441.jpg">
-<b>HEAVENLY<br>CONNECT<span>Uaminifu thabiti</span></b>
+<div id="drawer">
+<div class="drawer-top"><div style="font-size:26px">🔥</div><div><button class="login-btn" onclick="location.href='discover.html'">Log in</button> <button class="menu-btn" onclick="closeMenu()">✕</button></div></div>
+<div class="drawer-links">
+<div onclick="location.href='discover.html'">Product</div>
+<div onclick="location.href='lipia.html'">Subscriptions</div>
+<div>Safety</div>
+<div>Support</div>
+<div>Download</div>
+<div>Gift Cards</div>
+<div>Events</div>
 </div>
-<a href="register.html">JISAJILI</a>
 </div>
-<div class="grid" id="g"></div>
+<header><div class="logo">HEAVENLY</div><button class="menu-btn" onclick="openMenu()">☰</button></header>
+<div class="hero">
+<h1>It starts<br>with a<br>swipe.™</h1>
+<button class="cta" onclick="location.href='discover.html'">Create Account</button>
+<p style="margin-top:16px;color:#555;font-size:14px">Already have account? <a href="discover.html" style="color:#000;font-weight:bold;text-decoration:none">Log in</a></p>
+</div>
+<div class="bottom">
+<p>We value your privacy. We and our partners use trackers to measure the audience of our website and to provide you with offers and improve our own Heavenly marketing operations. <u>More info on cookies and providers we use.</u> You can withdraw your consent at any time in your settings.</p>
+<div class="btn-cook" onclick="location.href='discover.html'">I accept</div>
+<div class="btn-cook">I decline</div>
+<div class="btn-cook">Personalize my choices</div>
+</div>
 <script>
-let women=["Neema","Aisha","Zawadi","Rehema","Grace","Faith","Joyce","Asha","Zainab","Happy","Glory","Irene","Flora","Agnes","Eva","Stella","Lucy","Jane","Sarah","Deborah","Esther","Ruth","Tumaini","Upendo","Furaha","Salma","Hadija","Mariam","Anitha","Winnie"];
-let men=["Brian","Kelvin","Joseph","David","John","Peter","Musa","Baraka","Daniel","Frank","Mike","Joshua","Emmanuel","Victor","Sam","Alex","Erick","Collins","Martin","Godfrey"];
-let all=[];
-women.forEach((n,i)=>all.push({j:n,a:22+Math.floor(Math.random()*7),m:"Dar",p:`https://randomuser.me/api/portraits/women/${i+10}.jpg`}));
-men.forEach((n,i)=>all.push({j:n,a:26+Math.floor(Math.random()*7),m:"Dar",p:`https://randomuser.me/api/portraits/men/${i+11}.jpg`}));
-document.getElementById('g').innerHTML=all.map(v=>`<div class="card"><div class="pic"><img src="${v.p}"><span class="badge">Online</span></div><div class="info"><b>${v.j}, ${v.a}</b><p>${v.m}</p><button class="chat" onclick="location.href='paywall.html'">Chat</button></div></div>`).join('');
+function openMenu(){document.getElementById("drawer").style.display="flex"}
+function closeMenu(){document.getElementById("drawer").style.display="none"}
 </script>
 </body>
 </html>
