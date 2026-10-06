@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lipa</title>
+<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0f0f0f;color:#fff;font-family:system-ui}
+.wrap{max-width:430px;margin:0 auto;padding:16px}.card{background:#1e1e1e;border-radius:20px;padding:20px;border:1px solid #333}
+.input{width:100%;padding:13px;border-radius:10px;border:1px solid #555;background:#111;color:#fff;margin-top:10px}
+.btn{width:100%;padding:14px;border:0;border-radius:12px;font-weight:900;margin-top:10px}
+.btn-green{background:#00e676;color:#000}.btn-pink{background:#ff2d95;color:#fff}.btn-dark{background:#333;color:#fff}
+</style></head><body>
+<div class="wrap"><div class="card" id="card">
+<div style="text-align:center"><h2 style="color:#ff2d95">🔒 Fungua Chat</h2><img id="pImg" src="https://randomuser.me/api/portraits/women/68.jpg" style="width:85px;height:85px;border-radius:50%;border:3px solid #ff2d95"><h3 id="pName">Neema, 24 - Dar</h3></div>
+<div style="background:#252525;border-radius:14px;padding:14px;margin:14px 0"><p style="margin:0;font-weight:900">💳 PayPal $2</p><div id="paypal" style="margin-top:10px"></div></div>
+<div style="background:#252525;border-radius:14px;padding:14px;margin:14px 0"><p style="margin:0;font-weight:900">🇹🇿 TigoPesa / Bank</p><div style="background:#111;padding:10px;border-radius:8px;margin:8px 0;font-size:13px">📱 <b style="color:#4caf50">0674429728</b><br>💰 5000 TZS</div><input id="txid" class="input" placeholder="Transaction ID"><button class="btn btn-green" onclick="unlockTx()">✅ Fungua</button><div style="text-align:center;margin:8px 0;color:#666;font-size:12px">— AU —</div><button class="btn btn-dark" onclick="trustUnlock()">🤝 Nimeshalipia</button></div>
+</div></div>
+<script>
+function doUnlock(){localStorage.setItem('heavenly_premium','yes');document.getElementById('card').innerHTML=`<div style="text-align:center;padding:20px"><div style="font-size:60px">🎉</div><h2 style="color:#00e676">Hongera!</h2><button class="btn btn-pink" onclick="location.href='index.html'">🚀 Ingia Kuchat</button></div>`;}
+paypal.Buttons({createOrder:(d,a)=>a.order.create({purchase_units:[{amount:{value:'2.00'}}]}),onApprove:(d,a)=>a.order.capture().then(x=>doUnlock())}).render('#paypal');
+function unlockTx(){let v=document.getElementById('txid').value.trim();if(v.length<5){alert('Ingiza ID');return}doUnlock();}
+function trustUnlock(){if(confirm('Umelipa 5000 kwenda 0674429728?'))doUnlock();}
+let q=new URLSearchParams(location.search);if(q.get('name'))document.getElementById('pName').textContent=q.get('name');if(q.get('img'))document.getElementById('pImg').src=q.get('img');
+</script></body></html>
