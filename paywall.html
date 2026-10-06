@@ -8,17 +8,17 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 body{background:#000;color:#fff;padding:15px}
 .top{text-align:center;padding:15px}
-.top img{width:60px;height:60px;border-radius:14px;border:2px solid #FFD700}
-.top b{color:#FFD700;display:block;margin-top:8px}
-.box{background:#111;border-radius:20px;padding:18px;margin-top:10px;border:1px solid #222}
-.box h2{text-align:center;color:#FFD700}
-.pkg{background:#1a1a1a;border-radius:14px;padding:14px;margin:10px 0;display:flex;justify-content:space-between;align-items:center;border:1px solid #333;cursor:pointer}
-.pkg.active{border-color:#FFD700;background:#221e00}
-.lipa{background:#111;border:1px dashed #FFD700;padding:12px;border-radius:12px;text-align:center;margin:14px 0}
-.lipa b{color:#FFD700;font-size:22px;display:block}
+.top img{width:60px;height:60px;border-radius:14px;border:2px solid gold}
+.top b{color:gold;display:block;margin-top:8px}
+.box{background:#111;border-radius:20px;padding:18px;margin-top:10px}
+.box h2{text-align:center;color:gold}
+.pkg{background:#1a1a1a;border-radius:14px;padding:14px;margin:10px 0;border:1px solid #333}
+.pkg.active{border-color:gold;background:#221e00}
+.lipa{background:#111;border:1px dashed gold;padding:12px;border-radius:12px;text-align:center;margin:14px 0}
+.lipa b{color:gold;font-size:22px;display:block}
 input{width:100%;padding:14px;border-radius:12px;border:1px solid #333;background:#1a1a1a;color:#fff;margin:8px 0}
-.pay{width:100%;padding:14px;border:0;border-radius:14px;font-weight:900;margin-top:12px;font-size:16px;background:#FFD700;color:#000}
-.success{display:none;background:#002a14;border:1px solid #00d26a;border-radius:14px;padding:16px;text-align:center;margin-top:12px}
+.pay{width:100%;padding:14px;border:0;border-radius:14px;font-weight:900;background:gold;color:#000}
+.success{display:none;background:#002a14;border:1px solid #0f0;border-radius:14px;padding:16px;text-align:center;margin-top:12px}
 </style>
 </head>
 <body>
@@ -28,18 +28,29 @@ input{width:100%;padding:14px;border-radius:12px;border:1px solid #333;backgroun
 </div>
 <div class="box">
 <h2>Chagua Kifurushi</h2>
-<div class="pkg active" onclick="setP(5000,'Wiki 1',this)"><div><b>TZS 5,000</b><br><span style="font-size:12px;color:#aaa">Wiki 1</span></div><button style="background:#FFD700;border:0;padding:8px 16px;border-radius:20px;font-weight:900">Chagua</button></div>
-<div class="pkg" onclick="setP(10000,'Mwezi 1',this)"><div><b>TZS 10,000</b><br><span style="font-size:12px;color:#aaa">Mwezi 1</span></div><button style="background:#FFD700;border:0;padding:8px 16px;border-radius:20px;font-weight:900">Chagua</button></div>
-<div class="pkg" onclick="setP(20000,'Miezi 3',this)"><div><b>TZS 20,000</b><br><span style="font-size:12px;color:#aaa">Miezi 3</span></div><button style="background:#FFD700;border:0;padding:8px 16px;border-radius:20px;font-weight:900">Chagua</button></div>
-<div class="lipa">Lipa M-Pesa / Tigo / Airtel<br><b>0674429728</b>Jina: Heavenly Connect<br>Kiasi: <b id="amt">TZS 5,000</b> - <span id="plan">Wiki 1</span></div>
+<div class="pkg active" onclick="setP(5000)">TZS 5,000 - Wiki 1</div>
+<div class="pkg" onclick="setP(10000)">TZS 10,000 - Mwezi 1</div>
+<div class="pkg" onclick="setP(20000)">TZS 20,000 - Miezi 3</div>
+<div class="lipa">
+Lipa M-Pesa / Tigo / Airtel<br>
+<b>0674429728</b><br>
+Kiasi: <b id="amt">TZS 5,000</b>
+</div>
 <input type="text" id="tid" placeholder="Weka Transaction ID">
 <button class="pay" onclick="thibitisha()">THIBITISHA & FUNGUA</button>
-<div id="ok" class="success"><b>✓ Malipo Yamepokelewa!</b><br><br>ID: <span id="showTid"></span><br>Inafungua...</div>
+<div id="ok" class="success"><b>Malipo Yamepokelewa!</b><br>ID: <span id="showTid"></span></div>
 </div>
 <script>
-let kiasi=5000, mpango='Wiki 1';
-function setP(a,p,el){kiasi=a;mpango=p;document.getElementById('amt').innerText='TZS '+a.toLocaleString();document.getElementById('plan').innerText=p;document.querySelectorAll('.pkg').forEach(e=>e.classList.remove('active'));el.classList.add('active');}
-function thibitisha(){let tid=document.getElementById('tid').value.trim();if(tid.length<5){alert('Weka Transaction ID sahihi');return;}localStorage.setItem('heavenly_paid','yes');localStorage.setItem('heavenly_tid',tid);document.getElementById('showTid').innerText=tid;document.getElementById('ok').style.display='block';setTimeout(()=>{window.location.href='index.html';},2000);}
+let kiasi=5000;
+function setP(a){kiasi=a;document.getElementById('amt').innerText='TZS '+a.toLocaleString();}
+function thibitisha(){
+let tid=document.getElementById('tid').value.trim();
+if(tid.length<5){alert('Weka Transaction ID');return;}
+localStorage.setItem('heavenly_paid','yes');
+document.getElementById('showTid').innerText=tid;
+document.getElementById('ok').style.display='block';
+setTimeout(()=>{window.location.href='index.html';},2000);
+}
 </script>
 </body>
 </html>
