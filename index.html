@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Heavenly Connect TZ</title><script src="https://cdn.tailwindcss.com"></script>
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import {getFirestore, collection, addDoc, getDocs} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import {getStorage, ref, uploadBytes, getDownloadURL} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+const firebaseConfig = {
+  apiKey: "PASTE_API_KEY_HERE",
+  authDomain: "PASTE_HERE.firebaseapp.com",
+  projectId: "PASTE_PROJECT_ID",
+  storageBucket: "PASTE_HERE.appspot.com",
+  appId: "PASTE_APP_ID"
+};
+const app=initializeApp(firebaseConfig);
+window.db=getFirestore(app); window.storage=getStorage(app);
+window.fb={collection,addDoc,getDocs,ref,uploadBytes,getDownloadURL};
+</script></head>
+<body class="max-w-[420px] mx-auto bg-white min-h-screen pb-24">
+<div class="bg-pink-500 text-white p-2 text-center text-xs font-bold">Heavenly Connect • Lipa: 0674429728</div>
+<div class="bg-[#ffe1e8] p-3 flex justify-between"><b class="text-pink-600">Heavenly Connect</b><button onclick="showPay()" class="bg-white text-pink-600 px-3 py-1 rounded-full text-xs font-bold">👑 5k / 15k</button></div>
+<div id="payBar" class="m-3 bg-black text-white rounded-2xl p-3 flex justify-between items-center"><div><div class="font-bold text-sm">Premium</div><div class="text-[11px]">Weekly 5,000 • Monthly 15,000</div><div class="text-pink-300 font-bold">0674429728</div></div><button onclick="showPay()" class="bg-pink-500 px-4 py-2 rounded-full text-xs font-bold">LIPIA</button></div>
+<div id="cards" class="p-4 text-sm text-center text-gray-400">Loading... Add 10 men / 20 women below</div>
+<div class="flex justify-center gap-16"><button onclick="skip()" class="w-16 h-16 rounded-full border-2 border-pink-300">✕</button><button onclick="skip()" class="w-16 h-16 rounded-full bg-pink-500 text-white text-2xl">♥</button></div>
+<div class="fixed bottom-0 w-full max-w-[420px] bg-white border-t flex justify-around p-3 text-[11px] font-bold"><button onclick="loadProfiles()">Discover</button><button onclick="openAdd()" class="text-pink-600">+ Add</button><button onclick="showPay()">Pay 0674429728</button></div>
+<div id="addModal" class="hidden fixed inset-0 bg-black/60 z-50 p-4 flex items-center"><div class="bg-white w-full rounded-2xl p-4"><h3 class="font-bold">Add Person - Permanent</h3><input id="n" placeholder="Name" class="w-full border p-3 rounded-xl mt-2"><input id="a" placeholder="Age" type="number" class="w-full border p-3 rounded-xl mt-2"><select id="g" class="w-full border p-3 rounded-xl mt-2"><option>Female</option><option>Male</option></select><input id="ph" type="file" accept="image/*" class="w-full mt-3"><button onclick="saveFirebase()" class="w-full bg-pink-500 text-white p-3 rounded-xl mt-3 font-bold">Save FOREVER</button><button onclick="document.getElementById('addModal').classList.add('hidden')" class="w-full mt-2 text-xs">Close</button></div></div>
+<div id="payModal" class="hidden fixed inset-0 bg-black/60 z-50 p-4 flex items-center"><div class="bg-white w-full rounded-2xl p-5"><h3 class="font-bold text-lg">Lipia Premium</h3><div class="mt-3 p-3 border-2 border-pink-200 rounded-xl"><b>Wiki 1 - TZS 5,000</b><br><span class="text-pink-600 font-bold">0674429728</span> M-Pesa / TigoPesa</div><div class="mt-2 p-3 border-2 border-pink-500 rounded-xl bg-pink-50"><b>Mwezi 1 - TZS 15,000</b><br><span class="text-pink-600 font-bold">0674429728</span> M-Pesa / TigoPesa</div><a href="https://wa.me/255674429728?text=Nimelipia%20Premium%20Heavenly%20Connect" class="block bg-green-500 text-white text-center p-3 rounded-xl mt-3 font-bold">Tuma Screenshot WhatsApp</a><button onclick="document.getElementById('payModal').classList.add('hidden')" class="w-full mt-3 text-xs">Close</button></div></div>
+<script>
+let profiles=[]; let i=0;
+function openAdd(){document.getElementById('addModal').classList.remove('hidden')}
+function showPay(){document.getElementById('payModal').classList.remove('hidden')}
+async function saveFirebase(){const f=document.getElementById('ph').files[0]; if(!f) return alert('Chagua picha'); const name=document.getElementById('n').value; const age=document.getElementById('a').value; if(!name||!age) return alert('Jaza jina'); const sRef=window.fb.ref(window.storage,'p/'+Date.now()+f.name); await window.fb.uploadBytes(sRef,f); const url=await window.fb.getDownloadURL(sRef); await window.fb.addDoc(window.fb.collection(window.db,'users'),{name,age,gender:document.getElementById('g').value,photo:url,location:'Dar es Salaam',created:Date.now()}); alert('Saved!'); document.getElementById('addModal').classList.add('hidden'); loadProfiles();}
+async function loadProfiles(){try{const s=await window.fb.getDocs(window.fb.collection(window.db,'users')); profiles=[]; s.forEach(d=>profiles.push(d.data())); if(profiles.length==0){document.getElementById('cards').innerHTML='Bado hakuna. Ongeza watu 30.';return;} i=0; render();}catch(e){document.getElementById('cards').innerHTML='Weka Firebase config kwanza.'}}
+function render(){const p=profiles[i]; document.getElementById('cards').innerHTML=`<div class="rounded-[24px] overflow-hidden shadow-xl"><div class="h-[430px] bg-cover bg-center" style="background-image:url('${p.photo}')"><div class="h-full bg-gradient-to-t from-black/70 to-transparent flex items-end p-4 text-white text-left"><div><div class="text-2xl font-bold">${p.name}, ${p.age}</div><div class="text-xs">${p.gender} • Dar es Salaam • Lipa: 0674429728</div></div></div></div></div>`}
+function skip(){i++; if(i>=profiles.length) i=0; render();}
+setTimeout(loadProfiles,1500);
+</script></body></html>
