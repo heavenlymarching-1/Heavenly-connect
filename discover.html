@@ -1,1 +1,24 @@
-<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"><title>Heavenly Discover</title><style>body{margin:0;background:#111;color:#fff;font-family:sans-serif;text-align:center}.card{width:92%;max-width:360px;height:520px;background:#222;border-radius:20px;margin:20px auto;overflow:hidden}.card img{width:100%;height:75%;object-fit:cover}.btn{width:70px;height:70px;border-radius:50%;border:none;font-size:30px;margin:12px}.like{background:#ff2d55;color:#fff}.nope{background:#333;color:#fff}#matchPopup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.92);display:none;justify-content:center;align-items:center;flex-direction:column;z-index:999}</style></head><body><h3>Heavenly Connect ❤️</h3><div id="cardContainer">Inapakia...</div><div><button class="btn nope" onclick="swipe(false)">✕</button><button class="btn like" onclick="swipe(true)">❤</button></div><p><a href="chat.html" style="color:#ff2d55">💬 Chats Zangu</a></p><div id="matchPopup"><h1>🔥 MATCH!</h1><h2 id="mName"></h2><img id="mImg" style="width:150px;height:150px;border-radius:50%"><br><br><button onclick="location.href='chat.html'" style="padding:14px 30px;background:#ff2d55;border:none;border-radius:30px;color:#fff">Anza Kuchati</button><p onclick="document.getElementById('matchPopup').style.display='none'">Endelea</p></div><script>let users=Array.from({length:70},(_,i)=>({id:i,name:["Asha","Neema","Zainab","Faith","Irene","Happy","Grace","Sarah"][i%8]+" "+(i+1),age:20+Math.floor(Math.random()*9),img:`https://randomuser.me/api/portraits/women/${(i%70)+1}.jpg`}));let cur=0;let liked=JSON.parse(localStorage.getItem("liked")||"[]");function showCard(){if(cur>=users.length){document.getElementById("cardContainer").innerHTML="<h2>Hakuna tena leo</h2>";return}let u=users[cur];document.getElementById("cardContainer").innerHTML=`<div class="card"><img src="${u.img}"><div style="padding:10px"><h3>${u.name}, ${u.age}</h3><p>Natafuta mahusiano ya kweli</p></div></div>`}function swipe(isLike){if(!localStorage.getItem("heavenly_paid")&&liked.length>=3){alert("Umetumia likes 3 za bure! Lipa 5000 kuendelea");location.href="paywall.html";return}let t=users[cur];if(isLike){liked.push(t.id);localStorage.setItem("liked",JSON.stringify(liked));if(Math.random()>0.4){document.getElementById("mName").innerText=t.name;document.getElementById("mImg").src=t.img;document.getElementById("matchPopup").style.display="flex";localStorage.setItem("lastMatch",JSON.stringify(t))}}cur++;showCard()}showCard();</script></body></html>
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Discover</title>
+<script>if(localStorage.getItem('heavenly_paid')!=='true'){location.href='lipia.html'}</script>
+<style>
+body{background:#000;color:#fff;font-family:system-ui;margin:0;padding:12px}
+.top{display:flex;justify-content:space-between;padding:16px;background:#111;border-radius:16px;margin-bottom:12px}
+.card{background:#111;border:1px solid #222;border-radius:20px;overflow:hidden;margin-bottom:16px}
+.card img{width:100%;height:360px;object-fit:cover}
+.info{padding:14px}
+.btn{width:100%;padding:14px;border:none;border-radius:30px;font-weight:900;margin-top:8px}
+.chat{background:#ff2d55;color:#fff}
+.like{background:#222;color:#fff;border:1px solid #333}
+</style>
+</head>
+<body>
+<div class="top"><b style="color:#ff2d55">HEAVENLY ❤️</b><a href="chat.html" style="color:#fff;text-decoration:none">Chat</a></div>
+<div class="card"><img src="https://i.imgur.com/8Km9tLL.jpg"><div class="info"><h3>Neema, 24 - Dar</h3><p>Nataka mahusiano ya ukweli.</p><button class="btn like">❤️ Like</button><button class="btn chat" onclick="location.href='chat.html'">💬 Chat</button></div></div>
+<div class="card"><img src="https://i.imgur.com/8Km9tLL.jpg"><div class="info"><h3>Grace, 26 - Arusha</h3><p>Mtu wa Mungu.</p><button class="btn like">❤️ Like</button><button class="btn chat" onclick="location.href='chat.html'">💬 Chat</button></div></div>
+</body>
+</html>
