@@ -1,51 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Heavenly Connect - Lipa Auto</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
-body{background:#0f0f0f;color:#fff;padding:15px}
-.card{background:#1e1e1e;border:2px solid #FFD700;border-radius:20px;padding:20px;max-width:400px;margin:20px auto}
-h2{color:#FFD700;text-align:center}
-select,input{width:100%;padding:14px;border-radius:12px;border:none;background:#2a2a2a;color:#fff;margin:12px 0;font-size:15px}
-.btn{background:#FFD700;color:#000;width:100%;padding:15px;border-radius:25px;font-weight:900;border:none;font-size:17px}
-</style>
-</head>
-<body>
-<div style="text-align:center"><h1 style="color:#FFD700">Heavenly Connect</h1></div>
-<div class="card">
-<h2>🔒 Lipa Auto - TID</h2>
-<p style="text-align:center;font-size:13px;margin:10px 0">Tigo Pesa <b style="color:#FFD700">0674429728</b></p>
-<select id="plan"><option>WIKI - 5,000 TZS (Siku 7)</option><option>MWEZI - 15,000 TZS (Siku 30)</option></select>
-<input id="phone" placeholder="Namba yako 0674...">
-<input id="tid" placeholder="Transaction ID TP...">
-<button class="btn" onclick="thibitisha()">THIBITISHA MALIPO</button>
+<div style="max-width:380px;margin:20px auto;background:#111;padding:22px;border-radius:16px;border:1px solid #FFD700;text-align:center">
+<p style="color:#FFD700;font-weight:900">LIPA TSH 5,000</p>
+<p style="color:#fff;font-size:13px">M-Pesa: 07XXXXXXXX</p>
+<input id="tx" placeholder="Transaction ID" style="width:100%;padding:14px;border-radius:10px;border:none;background:#222;color:#fff;margin:12px 0">
+<button onclick="if(document.getElementById('tx').value.length>3){localStorage.setItem('p','1');location.href='vip.html'}else{alert('Weka TxID')}" style="width:100%;padding:14px;border-radius:10px;border:none;background:#FFD700;font-weight:900">FUNGUA</button>
 </div>
-<div style="max-width:400px;margin:20px auto;text-align:center">
-<p style="color:#FFD700;font-weight:900">Mikoa 31 Yote</p>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px">
-<span style="background:#2a2a2a;padding:8px;border-radius:10px;font-size:12px">Arusha</span>
-<span style="background:#2a2a2a;padding:8px;border-radius:10px;font-size:12px">Dar</span>
-<span style="background:#2a2a2a;padding:8px;border-radius:10px;font-size:12px">Dodoma</span>
-<span style="background:#2a2a2a;padding:8px;border-radius:10px;font-size:12px">Mwanza</span>
-<span style="background:#2a2a2a;padding:8px;border-radius:10px;font-size:12px">Mbeya</span>
-<span style="background:#2a2a2a;padding:8px;border-radius:10px;font-size:12px">Tanga</span>
-</div>
-</div>
-<script>
-function thibitisha(){
-let p=document.getElementById('plan').value,ph=document.getElementById('phone').value,t=document.getElementById('tid').value;
-if(ph.length<10||t.length<5){alert('Jaza namba na TID');return}
-let d=p.includes('WIKI')?7:30;
-localStorage.setItem('heavenly_vip','true');
-localStorage.setItem('heavenly_vip_expiry',Date.now()+d*86400000);
-let m=`MALIPO AUTO%0APlan:${p}%0ANamba:${ph}%0ATID:${t}`;
-window.open('https://wa.me/255674429728?text='+m,'_blank');
-alert('VIP IMEFUNGULIWA SIKU '+d);
-location.href='home.html';
-}
-</script>
-</body>
-</html>
